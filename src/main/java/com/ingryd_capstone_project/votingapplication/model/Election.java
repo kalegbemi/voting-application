@@ -1,4 +1,4 @@
-git package com.ingryd_capstone_project.votingapplication.model;
+package com.ingryd_capstone_project.votingapplication.model;
 
 import com.ingryd_capstone_project.votingapplication.enums.Status;
 import jakarta.persistence.*;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class election {
+public class Election {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
