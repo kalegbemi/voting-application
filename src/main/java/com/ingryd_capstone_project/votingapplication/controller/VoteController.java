@@ -14,6 +14,7 @@ public class VoteController {
     private VoteService voteService;
 
     @PostMapping("")
+    //public ResponseEntity<Voter>
 
   @GetMapping("/election/{electionId}")
     public ResponseEntity<Vote> getElectionById(@PathVariable long electionId) {
@@ -21,7 +22,7 @@ public class VoteController {
   }
 
   @GetMapping("/voter/{voterId}")
-    public ResponseEntity<Voter> getVoteByVoterId(@PathVariable long voterId) {
+    public ResponseEntity<Vote> getVoteByVoterId(@PathVariable long voterId) {
       return voteService.getVoteByVoterId(voterId);
   }
 
