@@ -1,6 +1,6 @@
-package com.ingryd_capstone_project.votingapplication.Config;
+package com.ingryd_capstone_project.votingapplication.config;
 
-import com.ingryd_capstone_project.votingapplication.Model.Role;
+import com.ingryd_capstone_project.votingapplication.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

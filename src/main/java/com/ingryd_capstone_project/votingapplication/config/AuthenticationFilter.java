@@ -1,6 +1,6 @@
-package com.ingryd_capstone_project.votingapplication.Config;
+package com.ingryd_capstone_project.votingapplication.config;
 
-import com.ingryd_capstone_project.votingapplication.Service.JWTService;
+import com.ingryd_capstone_project.votingapplication.service.JWTService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
