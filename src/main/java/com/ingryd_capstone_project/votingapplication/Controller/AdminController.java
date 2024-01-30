@@ -19,12 +19,12 @@ public class AdminController {
     private AdminService adminService;
 
     @PostMapping("/admins")
+    @PreAuthorize("/Admin")
     public Admin saveAdmin(@RequestBody AdminRegistrationRequest adminRegistrationRequest) {
         return adminService.saveAdmin(adminRegistrationRequest);
     }
 
     @GetMapping("/admins")
-    @PreAuthorize("/Admin")
     public List<Admin> getAllAdmins() {
         return adminService.getAllAdmins();
     }
