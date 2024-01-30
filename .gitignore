@@ -33,3 +33,7 @@ build/
 .vscode/
 
 src/main/resources/application.properties
+
+src/main/java/com/ingryd_capstone_project/votingapplication/model/Role.java
+https://github.com/kalegbemi/voting-application/blob/879e470f0144ee377b2c4096ccd966364bc4bc1a/src/main/resources
+https://github.com/kalegbemi/voting-application/blob/879e470f0144ee377b2c4096ccd966364bc4bc1a/pom.xml
