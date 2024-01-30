@@ -1,11 +1,11 @@
-package com.ingryd_capstone_project.votingapplication.Service;
+package com.ingryd_capstone_project.votingapplication.service;
 
-import com.ingryd_capstone_project.votingapplication.Model.Admin;
-import com.ingryd_capstone_project.votingapplication.Model.AuthenticationRequest;
-import com.ingryd_capstone_project.votingapplication.Model.AuthenticationResponse;
-import com.ingryd_capstone_project.votingapplication.Repository.AdminRepository;
-import com.ingryd_capstone_project.votingapplication.Request.AdminRegistrationRequest;
-import com.ingryd_capstone_project.votingapplication.Request.AdminUpdateRequest;
+import com.ingryd_capstone_project.votingapplication.model.Admin;
+import com.ingryd_capstone_project.votingapplication.model.AuthenticationRequest;
+import com.ingryd_capstone_project.votingapplication.model.AuthenticationResponse;
+import com.ingryd_capstone_project.votingapplication.repository.AdminRepository;
+import com.ingryd_capstone_project.votingapplication.request.AdminRegistrationRequest;
+import com.ingryd_capstone_project.votingapplication.request.AdminUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;

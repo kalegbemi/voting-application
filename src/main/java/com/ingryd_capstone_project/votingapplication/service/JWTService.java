@@ -1,6 +1,6 @@
-package com.ingryd_capstone_project.votingapplication.Service;
+package com.ingryd_capstone_project.votingapplication.service;
 
-import com.ingryd_capstone_project.votingapplication.Repository.AdminRepository;
+import com.ingryd_capstone_project.votingapplication.repository.AdminRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

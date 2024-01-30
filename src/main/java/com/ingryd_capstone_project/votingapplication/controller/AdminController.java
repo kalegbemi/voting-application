@@ -1,11 +1,11 @@
-package com.ingryd_capstone_project.votingapplication.Controller;
+package com.ingryd_capstone_project.votingapplication.controller;
 
-import com.ingryd_capstone_project.votingapplication.Model.Admin;
-import com.ingryd_capstone_project.votingapplication.Model.AuthenticationRequest;
-import com.ingryd_capstone_project.votingapplication.Model.AuthenticationResponse;
-import com.ingryd_capstone_project.votingapplication.Request.AdminRegistrationRequest;
-import com.ingryd_capstone_project.votingapplication.Request.AdminUpdateRequest;
-import com.ingryd_capstone_project.votingapplication.Service.AdminService;
+import com.ingryd_capstone_project.votingapplication.model.Admin;
+import com.ingryd_capstone_project.votingapplication.model.AuthenticationRequest;
+import com.ingryd_capstone_project.votingapplication.model.AuthenticationResponse;
+import com.ingryd_capstone_project.votingapplication.request.AdminRegistrationRequest;
+import com.ingryd_capstone_project.votingapplication.request.AdminUpdateRequest;
+import com.ingryd_capstone_project.votingapplication.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

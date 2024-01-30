@@ -1,4 +1,4 @@
-package com.ingryd_capstone_project.votingapplication.Model;
+package com.ingryd_capstone_project.votingapplication.model;
 
 import lombok.Builder;
 import lombok.Data;
