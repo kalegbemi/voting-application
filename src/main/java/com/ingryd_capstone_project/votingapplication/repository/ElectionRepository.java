@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface ElectionRepository extends JpaRepository<Election, Long> {
-    List<Election> findByTitle(String title);
+    Election findByTitle(String title);
     List<Election> findByStatus(Status status);
 
 }
