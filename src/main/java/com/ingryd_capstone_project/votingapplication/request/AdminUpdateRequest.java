@@ -1,6 +1,6 @@
 package com.ingryd_capstone_project.votingapplication.request;
 
-import com.ingryd_capstone_project.votingapplication.model.Role;
+import com.ingryd_capstone_project.votingapplication.enums.Role;
 import lombok.Data;
 
 @Data
