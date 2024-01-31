@@ -1,5 +1,6 @@
 package com.ingryd_capstone_project.votingapplication.service;
 
+import com.ingryd_capstone_project.votingapplication.exception.AdminNotFoundException;
 import com.ingryd_capstone_project.votingapplication.model.Admin;
 import com.ingryd_capstone_project.votingapplication.model.AuthenticationRequest;
 import com.ingryd_capstone_project.votingapplication.model.AuthenticationResponse;
@@ -59,7 +60,7 @@ public AuthenticationResponse adminLogin(AuthenticationRequest authenticationReq
 }
 @Cacheable(value = "singleAdmins", key = "id")
 public Admin getAdminById(int id) {
-        return adminRepository.findById(id).get();
+        return adminRepository.findById(id).orElseThrow(()->new AdminNotFoundException("Admin with id: " + id + "can not be found"));
 }
 public Admin updateAdmin(int id, AdminUpdateRequest updateRequest) {
     Admin toUpdate = new Admin();
