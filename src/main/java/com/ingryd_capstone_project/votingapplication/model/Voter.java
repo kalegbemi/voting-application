@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Entity
 @Table(name = "voter_table")
-public class Voters {
+public class Voter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
