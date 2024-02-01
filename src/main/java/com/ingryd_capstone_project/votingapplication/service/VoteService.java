@@ -36,9 +36,9 @@ public class VoteService {
 
     public ResponseEntity<Vote> castVote(VoteRequest voteRequest) {
         Vote vote1 = Vote.builder()
-                .voter(voteRequest.getVoterId())
-                .candidate(voteRequest.getCandidateId())
-                .election(voteRequest.getElectionId())
+                .voter(voteRequest.voterId())
+                .candidate(voteRequest.candidateId())
+                .election(voteRequest.electionId())
                 .build();
         return new ResponseEntity<>(voteRepository.save(vote1),HttpStatus.OK);
     }
