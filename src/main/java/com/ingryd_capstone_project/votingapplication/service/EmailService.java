@@ -8,14 +8,15 @@ import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
 
-@ComponentScan
+
+
 @Slf4j
-//@Component
 @RequiredArgsConstructor
+@Component
 public class EmailService implements EmailServiceImpl {
 
     public static final String UTF_8_ENCODING = "UTF-8";
