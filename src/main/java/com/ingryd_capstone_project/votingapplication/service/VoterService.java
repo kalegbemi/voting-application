@@ -29,10 +29,6 @@ public class VoterService {
     public void deleteVoter(long voterId) {
         voterRepository.deleteById(voterId);
     }
-
-    // You can add more methods based on your application requirements
-
-    // For example, you might want to authenticate a voter
     public boolean authenticateVoter(String username, String password) {
         Voter voter = voterRepository.findByUsername(username);
         return voter != null && voter.getPassword().equals(password);
