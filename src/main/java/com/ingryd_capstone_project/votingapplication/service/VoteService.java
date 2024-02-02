@@ -33,7 +33,7 @@ public class VoteService {
 
         return new ResponseEntity<>(voteRepository.findAll(),HttpStatus.OK);
     }
-
+    @Cacheable("castVote")
     public ResponseEntity<Vote> castVote(VoteRequest voteRequest) {
         Vote vote1 = Vote.builder()
                 .voter(voteRequest.voterId())
