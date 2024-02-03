@@ -16,6 +16,9 @@ public class Voter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne(cascade =CascadeType.ALL)
+    private Vote vote;
+
     private String firstName;
 
     private String lastName;

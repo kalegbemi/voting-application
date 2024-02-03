@@ -32,10 +32,4 @@ public class Vote {
     private LocalDateTime startTime;
 
     private LocalDateTime endTime;
-
-
-
-
-
-
 }
