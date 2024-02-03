@@ -22,14 +22,19 @@ public class VoterController {
     public Voter createVoter (@RequestBody UserRegisterationRequest userRegisterationRequest) {
         return voterService.createVoter(userRegisterationRequest);
     }
-
+    @PostMapping("/authenticate")
+    public boolean authenticateVoter(@RequestParam String username, @RequestParam String password) {
+        return voterService.authenticateVoter(username, password);
+    }
     @GetMapping("/allvoters")
     public List <Voter> getAllVoters() {
+
         return voterService.getAllVoters();
     }
 
     @GetMapping("/voters/{id}")
     public Voter getVoterById(@PathVariable long id){
+
         return voterService.getVoterById(id).orElse(null);
     }
 
@@ -40,6 +45,7 @@ public class VoterController {
 
     @DeleteMapping("/voters/{id}")
     public void deleteVoter (@PathVariable long id) {
+
         voterService.deleteVoter(id);
     }
 }
