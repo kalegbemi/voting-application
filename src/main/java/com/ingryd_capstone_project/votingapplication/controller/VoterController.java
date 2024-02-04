@@ -39,13 +39,12 @@ public class VoterController {
     }
 
     @PutMapping("/voters/{id}")
-    public Voter updateVoter(@PathVariable long id, @RequestBody VoterUpdateRequest updateRequest) {
+    public String updateVoter(@PathVariable long id, @RequestBody VoterUpdateRequest updateRequest) {
         return voterService.updateVoter(id, updateRequest);
     }
 
     @DeleteMapping("/voters/{id}")
     public void deleteVoter (@PathVariable long id) {
-
         voterService.deleteVoter(id);
     }
 }

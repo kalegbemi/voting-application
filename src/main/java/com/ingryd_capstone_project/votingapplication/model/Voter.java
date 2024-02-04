@@ -28,4 +28,7 @@ public class Voter {
     private String password;
 
     boolean registered;
+
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 }
