@@ -72,7 +72,7 @@ public class VoteService {
             }
 
         }
-        return  new ResponseEntity<>("Voting is not in session",HttpStatus.BAD_REQUEST);
+        return  new ResponseEntity<>("Voting session ended",HttpStatus.BAD_REQUEST);
     }
 
     private Boolean isExist(List<Vote> voteList, long electionId) {
