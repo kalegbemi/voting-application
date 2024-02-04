@@ -3,15 +3,12 @@ package com.ingryd_capstone_project.votingapplication.model;
 import com.ingryd_capstone_project.votingapplication.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 @Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 @Data
 public class Election {
     @Id

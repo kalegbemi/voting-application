@@ -1,5 +1,6 @@
 package com.ingryd_capstone_project.votingapplication.model;
 
+import com.ingryd_capstone_project.votingapplication.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
