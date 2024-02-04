@@ -34,10 +34,4 @@ public class Vote {
 
     @CreationTimestamp
     private LocalDateTime endTime;
-
-
-
-
-
-
 }

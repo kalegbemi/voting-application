@@ -16,6 +16,9 @@ public class Voter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne(cascade =CascadeType.ALL)
+    private Vote vote;
+
     private String firstName;
 
     private String lastName;
@@ -25,7 +28,4 @@ public class Voter {
     private String password;
 
     boolean registered;
-
-    @Enumerated(value = EnumType.STRING)
-    private Role role;
 }
