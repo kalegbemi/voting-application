@@ -1,7 +1,6 @@
 
 package com.ingryd_capstone_project.votingapplication.service;
 
-import com.ingryd_capstone_project.votingapplication.model.Role;
 import com.ingryd_capstone_project.votingapplication.model.Voter;
 import com.ingryd_capstone_project.votingapplication.repository.VoterRepository;
 import com.ingryd_capstone_project.votingapplication.request.UserRegisterationRequest;
@@ -45,15 +44,14 @@ public class VoterService {
         Optional<Voter> optionalVoter = voterRepository.findById(id);
 
         if (optionalVoter.isPresent()) {
-            Voter existingVoter = optionalVoter.get();
+            Voter toUpdate = optionalVoter.get();
 
-            existingVoter.setUsername(updateRequest.getUsername());
-            existingVoter.setPassword(updateRequest.getPassword());
-            existingVoter.setRole(Role.valueOf(updateRequest.getRole()));
-            existingVoter.setFirstName(updateRequest.getFirstName());
-            existingVoter.setLastName(updateRequest.getLastName());
+            toUpdate.setUsername(updateRequest.getUsername());
+            toUpdate.setPassword(updateRequest.getPassword());
+            toUpdate.setFirstName(updateRequest.getFirstName());
+            toUpdate.setLastName(updateRequest.getLastName());
 
-            voterRepository.save(existingVoter);
+            voterRepository.save(toUpdate);
 
             return "User successfully updated";
         } else {
@@ -61,6 +59,4 @@ public class VoterService {
             return "User not found with ID: " + id;
         }
     }
-
-
 }
