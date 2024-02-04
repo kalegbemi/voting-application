@@ -30,10 +30,7 @@ public class Vote {
     @ManyToOne
     private Election election;
 
-    private LocalDateTime startTime;
-
-    @CreationTimestamp
-    private LocalDateTime endTime;
+    private LocalDateTime votingTime;
 
 
 
