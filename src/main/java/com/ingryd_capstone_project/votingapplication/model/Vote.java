@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.engine.internal.Cascade;
 
 import java.time.LocalDateTime;
@@ -18,18 +19,19 @@ public class Vote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+    private Long id;
 
     @ManyToOne(cascade =CascadeType.ALL)
     private Voter voter;
 
     @ManyToOne
-   private Candidate candidate;
+    private Candidate candidate;
 
     @ManyToOne
-   private Election election;
+    private Election election;
 
     private LocalDateTime startTime;
 
+    @CreationTimestamp
     private LocalDateTime endTime;
 }
