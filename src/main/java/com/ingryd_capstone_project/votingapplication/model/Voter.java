@@ -24,6 +24,8 @@ public class Voter {
 
     private String lastName;
 
+    private String fullName;
+
     private String username;
 
     private String password;

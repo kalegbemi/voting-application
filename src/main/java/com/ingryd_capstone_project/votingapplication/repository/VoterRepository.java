@@ -13,4 +13,6 @@ public interface VoterRepository extends JpaRepository<Voter, Long> {
     Voter createVoter(UserRegisterationRequest voter);
 
     Voter updateVoter();
+
+    long getId();
 }

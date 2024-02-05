@@ -10,13 +10,34 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 @AllArgsConstructor
 @Service
 public class VoterService {
 
     private final VoterRepository voterRepository;
+
+    public long getid() {
+        return voterRepository.getId();
+    }
+    @CacheEvict(value = "allVoter", allEntries = true)
+    public Voter saveCandidate(Voter candidate) {
+        System.out.println(getid());
+        System.out.println(getid() + 1);
+        candidate.setId(getid() + 1);
+        return voterRepository.save(candidate);
+    }
+
+    public Map<String, Boolean> saveAllUsers(List<Voter> users){
+        Map<String, Boolean> response = new HashMap<>();
+        for(Voter user : users){
+            response.put(user.getFullName()+"Voter added successfully", true);
+        }
+        return response;
+    }
     @Cacheable
     public List<Voter> getAllVoters() {
         return voterRepository.findAll();
@@ -25,11 +46,6 @@ public class VoterService {
     public Optional<Voter> getVoterById(long voterId) {
 
         return voterRepository.findById(voterId);
-    }
-
-    @CacheEvict
-    public Voter createVoter(UserRegisterationRequest voter) {
-        return voterRepository.createVoter(voter);
     }
     @CacheEvict
     public void deleteVoter(long voterId) {
