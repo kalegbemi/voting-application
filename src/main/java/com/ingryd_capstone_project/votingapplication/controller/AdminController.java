@@ -24,7 +24,7 @@ public class AdminController {
     }
 
     @GetMapping("/admins")
-    @PreAuthorize("ADMIN")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Admin> getAllAdmins() {
         return adminService.getAllAdmins();
     }
@@ -35,7 +35,7 @@ public class AdminController {
 }
 
     @PostMapping("/login")
-    @PreAuthorize("ADMIN")
+    @PreAuthorize("hasRole('ADMIN')")
     public AuthenticationResponse adminLogin(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
         return adminService.adminLogin((authenticationRequest));
     }
