@@ -1,27 +1,17 @@
 spring:
-  #  config:
-  #    import: file:application.properties
+#  config:
+#    import: optional:secrets.properties
   datasource:
     username: ${USERNAME}
     password: ${PASSWORD}
     url: jdbc:mysql://localhost:3306/vote_management
 
   jpa:
-    hibernate:
-      ddl-auto: create
     show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
     properties:
       hibernate:
         format_sql: true
-    generate-ddl: true
-  mail:
-    port: ${EMAIL_PORT}
-    username: ${EMAIL_ADDRESS}
-    password: ${EMAIL_PASSWORD}
-    host: ${EMAIL_HOST}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
