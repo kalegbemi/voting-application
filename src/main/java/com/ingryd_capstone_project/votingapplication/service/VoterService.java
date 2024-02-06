@@ -10,16 +10,36 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 @AllArgsConstructor
 @Service
 public class VoterService {
 
     private final VoterRepository voterRepository;
+
+    public long getid() {
+        return voterRepository.getId();
+    }
+    @CacheEvict(value = "allVoter", allEntries = true)
+    public Voter saveCandidate(Voter candidate) {
+        System.out.println(getid());
+        System.out.println(getid() + 1);
+        candidate.setId(getid() + 1);
+        return voterRepository.save(candidate);
+    }
+
+    public Map<String, Boolean> saveAllUsers(List<Voter> users){
+        Map<String, Boolean> response = new HashMap<>();
+        for(Voter user : users){
+            response.put(user.getFullName()+"Voter added successfully", true);
+        }
+        return response;
+    }
     @Cacheable
     public List<Voter> getAllVoters() {
-
         return voterRepository.findAll();
     }
     @Cacheable
@@ -27,15 +47,8 @@ public class VoterService {
 
         return voterRepository.findById(voterId);
     }
-
-    @CacheEvict
-    public Voter createVoter(UserRegisterationRequest voter) {
-
-        return voterRepository.createVoter(voter);
-    }
     @CacheEvict
     public void deleteVoter(long voterId) {
-
         voterRepository.deleteById(voterId);
     }
     public boolean authenticateVoter(String username, String password) {
@@ -43,8 +56,23 @@ public class VoterService {
         return voter != null && voter.getPassword().equals(password);
     }
     @CacheEvict
-    public Voter updateVoter(long id, VoterUpdateRequest updateRequest) {
+    public String updateVoter(long id, VoterUpdateRequest updateRequest) {
+        Optional<Voter> optionalVoter = voterRepository.findById(id);
 
-        return voterRepository.updateVoter();
+        if (optionalVoter.isPresent()) {
+            Voter toUpdate = optionalVoter.get();
+
+            toUpdate.setUsername(updateRequest.getUsername());
+            toUpdate.setPassword(updateRequest.getPassword());
+            toUpdate.setFirstName(updateRequest.getFirstName());
+            toUpdate.setLastName(updateRequest.getLastName());
+
+            voterRepository.save(toUpdate);
+
+            return "User successfully updated";
+        } else {
+
+            return "User not found with ID: " + id;
+        }
     }
 }

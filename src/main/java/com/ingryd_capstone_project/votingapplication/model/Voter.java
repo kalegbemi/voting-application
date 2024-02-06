@@ -1,5 +1,6 @@
 package com.ingryd_capstone_project.votingapplication.model;
 
+import com.ingryd_capstone_project.votingapplication.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,9 +24,14 @@ public class Voter {
 
     private String lastName;
 
+    private String fullName;
+
     private String username;
 
     private String password;
 
     boolean registered;
+
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 }
