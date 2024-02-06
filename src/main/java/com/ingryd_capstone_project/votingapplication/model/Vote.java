@@ -73,9 +73,8 @@ public class Vote {
     @ManyToOne
     private Election election;
 
-    private LocalDateTime startTime;
+    private LocalDateTime votingTime;
 
-    @CreationTimestamp
-    private LocalDateTime endTime;
+
 }
 
