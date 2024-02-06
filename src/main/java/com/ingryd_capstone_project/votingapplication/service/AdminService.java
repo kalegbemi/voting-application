@@ -34,7 +34,7 @@ public class AdminService {
     public Admin saveAdmin(AdminRegistrationRequest adminRequest) {
         Admin admin = new Admin();
         admin.setUsername(adminRequest.getUsername());
-        admin.setPassword(adminRequest.getPassword());
+        admin.setPassword(passwordEncoder.encode(adminRequest.getPassword()));
         admin.setRole(adminRequest.getRole());
 
         return adminRepository.save(admin);
@@ -63,7 +63,7 @@ public Admin getAdminById(int id) {
         return adminRepository.findById(id).orElseThrow(()->new AdminNotFoundException("Admin with id: " + id + "can not be found"));
 }
 public Admin updateAdmin(int id, AdminUpdateRequest updateRequest) {
-    Admin toUpdate = new Admin();
+    Admin toUpdate = getAdminById(id);
     toUpdate.setUsername(updateRequest.getUsername());
     toUpdate.setPassword(updateRequest.getPassword());
     toUpdate.setRole(updateRequest.getRole());
