@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne(cascade =CascadeType.ALL)
     private Voter voter;
