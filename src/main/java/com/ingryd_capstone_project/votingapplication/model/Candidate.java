@@ -1,21 +1,24 @@
 package com.ingryd_capstone_project.votingapplication.model;
 
-import com.ingryd_capstone_project.votingapplication.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @Entity
-@Table(name = "voter_table")
-public class Voter {
+@Table(name = "candidate_table")
+public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @ManyToOne(cascade =CascadeType.ALL)
+    private Voter voter;
 
     @ManyToOne(cascade =CascadeType.ALL)
     private Vote vote;
@@ -24,14 +27,7 @@ public class Voter {
 
     private String lastName;
 
-    private String fullName;
+    private String partyAffiliation;
 
-    private String username;
-
-    private String password;
-
-    boolean registered;
-
-    @Enumerated(value = EnumType.STRING)
-    private Role role;
+    private String position;
 }
