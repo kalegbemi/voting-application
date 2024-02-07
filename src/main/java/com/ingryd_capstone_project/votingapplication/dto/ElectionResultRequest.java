@@ -7,8 +7,9 @@ import lombok.Data;
 @Builder
 public class ElectionResultRequest {
 
-    public Long electionId;
-    public Long voteId;
+    private Long electionId;
+    private Long voteId;
+    private Long candidateId;
 
 
 }

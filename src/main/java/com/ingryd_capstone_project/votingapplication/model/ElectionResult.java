@@ -1,13 +1,12 @@
 package com.ingryd_capstone_project.votingapplication.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -19,7 +18,19 @@ public class ElectionResult {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Vote vote;
+    @OneToOne
+    @JoinColumn(referencedColumnName = "election_id")
+    private Election election;
 
-    private Long totalResult;
+    @ManyToOne
+    private Candidate candidate;
+
+    @OneToMany
+    private List<Vote> vote;
+
+    private static Long totalResult;
+
+    private static Long totalVote;
+
+
 }
