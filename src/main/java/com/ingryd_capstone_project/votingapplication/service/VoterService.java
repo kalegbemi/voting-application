@@ -20,15 +20,13 @@ public class VoterService {
 
     private final VoterRepository voterRepository;
 
-    public long getid() {
-        return voterRepository.getId();
-    }
     @CacheEvict(value = "allVoter", allEntries = true)
-    public Voter saveCandidate(Voter candidate) {
-        System.out.println(getid());
-        System.out.println(getid() + 1);
-        candidate.setId(getid() + 1);
-        return voterRepository.save(candidate);
+    public Voter saveVoter(Voter voter) {
+        voter.setFirstName(voter.getFirstName());
+        voter.setLastName(voter.getLastName());
+        voter.setUsername(voter.getUsername());
+        voter.setPassword(voter.setPassword());
+        return voterRepository.save(voter);
     }
 
     public Map<String, Boolean> saveAllUsers(List<Voter> users){
