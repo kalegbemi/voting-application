@@ -1,4 +1,3 @@
-
 package com.ingryd_capstone_project.votingapplication.service;
 
 import com.ingryd_capstone_project.votingapplication.dto.VoteRequest;
