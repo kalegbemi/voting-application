@@ -34,4 +34,8 @@ public class Voter {
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
+
+    public String setPassword() {
+        return setPassword();
+    }
 }

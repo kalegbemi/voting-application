@@ -24,6 +24,9 @@ public interface VoteRepository extends JpaRepository<Vote, Long> {
     Vote findByVoterId(long id);
     List<Vote> findByVoter(Voter voter);
 
+    List<Vote> findByElectionIdAndCandidate(long electionId, long candidateId);
+    List<Vote> findAllByElectionId(long electionId);
+
 
     //Vote findByVoterId(long voteId);
 
