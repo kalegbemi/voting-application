@@ -11,12 +11,12 @@ import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-
+import org.springframework.stereotype.Service;
 
 
 @Slf4j
 @RequiredArgsConstructor
-@Component
+@Service
 public class EmailService implements EmailServiceImpl {
 
     public static final String UTF_8_ENCODING = "UTF-8";
@@ -24,7 +24,6 @@ public class EmailService implements EmailServiceImpl {
 
     private final JavaMailSender javaMailSender;
     private final MailProperties mailProperties;
-
 
 
     @Override
