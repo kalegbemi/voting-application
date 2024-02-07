@@ -8,4 +8,6 @@ public class AdminRegistrationRequest {
     private String username;
     private String password;
     public Role role;
+    public String fullName;
+    public String email;
 }

@@ -1,18 +1,15 @@
 package com.ingryd_capstone_project.votingapplication.dto;
 
-import lombok.AllArgsConstructor;
+import com.ingryd_capstone_project.votingapplication.model.Election;
+import com.ingryd_capstone_project.votingapplication.model.Voter;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Builder
+@Data
 public class VoteRequest {
-
-    private Voter voterId;
-    private Candidate candidateId;
-    private Election electionId;
-
+    private Long voterId;
+    private Long candidateId;
+    private Long electionId;
 }

@@ -31,13 +31,19 @@ public class AdminService {
     private PasswordEncoder passwordEncoder;
 
     @CacheEvict(value = "allAdmins", allEntries = true)
-    public Admin saveAdmin(AdminRegistrationRequest adminRequest) {
-        Admin admin = new Admin();
-        admin.setUsername(adminRequest.getUsername());
-        admin.setPassword(adminRequest.getPassword());
-        admin.setRole(adminRequest.getRole());
-
-        return adminRepository.save(admin);
+    public Admin saveAdmin(AdminRegistrationRequest adminRegistrationRequest) {
+       try{
+           Admin admin = new Admin();
+           admin.setUsername(adminRegistrationRequest.getUsername());
+           admin.setEmail(adminRegistrationRequest.getEmail());
+           admin.setFullName(adminRegistrationRequest.getFullName());
+           admin.setPassword(passwordEncoder.encode(adminRegistrationRequest.getPassword()));
+           admin.setRole(adminRegistrationRequest.getRole());
+           return adminRepository.save(admin);
+       }catch (Exception e){
+           System.out.println("Something went wrong" + e.getMessage());
+           return null;
+       }
     }
 public AuthenticationResponse adminLogin(AuthenticationRequest authenticationRequest) {
      try {
@@ -58,12 +64,12 @@ public AuthenticationResponse adminLogin(AuthenticationRequest authenticationReq
      public List<Admin> getAllAdmins() {
         return adminRepository.findAll();
 }
-@Cacheable(value = "singleAdmins", key = "id")
+@Cacheable(value = "singleAdmins", key = "#id")
 public Admin getAdminById(int id) {
         return adminRepository.findById(id).orElseThrow(()->new AdminNotFoundException("Admin with id: " + id + "can not be found"));
 }
 public Admin updateAdmin(int id, AdminUpdateRequest updateRequest) {
-    Admin toUpdate = new Admin();
+    Admin toUpdate = getAdminById(id);
     toUpdate.setUsername(updateRequest.getUsername());
     toUpdate.setPassword(updateRequest.getPassword());
     toUpdate.setRole(updateRequest.getRole());
