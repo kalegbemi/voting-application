@@ -39,7 +39,7 @@ public class JWTService {
                     .setClaims(claimsMap)
                     .setSubject(userDetails.getUsername())
                     .setIssuedAt(new Date(System.currentTimeMillis()))
-                    .setExpiration(new Date(System.currentTimeMillis() *1000 *60))
+                    .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 5))
                     .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                     .compact();
 
@@ -58,7 +58,7 @@ public class JWTService {
         }
         public boolean isTokenValid(String token, UserDetails userDetails) {
             String username = extractUsername(token);
-            return username.endsWith(userDetails.getUsername()) && !isTokenNotExpired(token);
+            return username.equalsIgnoreCase(userDetails.getUsername()) && !isTokenNotExpired(token);
         }
         public String extractUsername(String token) {
             return extractClaims(token, Claims::getSubject);

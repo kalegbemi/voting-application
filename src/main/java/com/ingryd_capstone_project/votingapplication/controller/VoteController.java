@@ -1,3 +1,5 @@
+
+
 package com.ingryd_capstone_project.votingapplication.controller;
 
 import com.ingryd_capstone_project.votingapplication.dto.VoteRequest;
@@ -17,7 +19,7 @@ public class VoteController {
     private VoteService voteService;
 
     @PostMapping("/castVote")
-    public ResponseEntity<Vote> castVote(@RequestBody VoteRequest voteRequest) {
+    public ResponseEntity<String> castVote(@RequestBody VoteRequest voteRequest) {
         return voteService.castVote(voteRequest);
     }
 
