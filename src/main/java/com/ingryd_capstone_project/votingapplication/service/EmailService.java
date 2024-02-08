@@ -11,19 +11,20 @@ import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-
+import org.springframework.stereotype.Service;
 
 
 @Slf4j
 @RequiredArgsConstructor
-@Component
+@Service
 public class EmailService implements EmailServiceImpl {
 
     public static final String UTF_8_ENCODING = "UTF-8";
+    public static  final  String FROM = "physayoemma@gmail.com";
     public static final String SUBJECT = "NOTIFICATION OF REGISTRATION";
 
     private final JavaMailSender javaMailSender;
-    private final MailProperties mailProperties;
+  //  private final MailProperties mailProperties;
 
 
 
@@ -33,7 +34,7 @@ public class EmailService implements EmailServiceImpl {
         try{
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, UTF_8_ENCODING);
-            helper.setFrom(mailProperties.getUsername());
+            helper.setFrom(FROM);
             helper.setTo(to);
             helper.setSubject(SUBJECT);
             helper.setText(MessageUtil.getVoterMessage(to,name,role));
@@ -50,7 +51,7 @@ public class EmailService implements EmailServiceImpl {
         try{
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, UTF_8_ENCODING);
-            helper.setFrom(mailProperties.getUsername());
+            helper.setFrom(FROM);
             helper.setTo(details.getTo());
             helper.setSubject(SUBJECT);
             helper.setText(MessageUtil.getCandidateMessage(details));

@@ -24,16 +24,12 @@ public class Voter {
 
     private String lastName;
 
-    private String fullName;
-
     private String username;
 
     private String password;
 
-    boolean registered;
-
     @Enumerated(value = EnumType.STRING)
-    private Role role;
+    private Role role = Role.VOTER;
 
     public String setPassword() {
         return setPassword();
