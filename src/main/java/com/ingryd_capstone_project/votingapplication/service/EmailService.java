@@ -27,7 +27,6 @@ public class EmailService implements EmailServiceImpl {
   //  private final MailProperties mailProperties;
 
 
-
     @Override
     public void sendVoterMessage(String to, String name, String role) {
         log.info("sending email to {}",name);

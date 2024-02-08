@@ -12,6 +12,15 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 @EnableCaching
 public class VotingApplication {
 
+	@Bean
+	public JavaMailSender javaMailSender(){
+		return new JavaMailSenderImpl();
+	}
+	@Bean
+	public MailProperties mailProperties(){
+		return new MailProperties();
+	}
+
 	public static void main(String[] args) {
 
 		SpringApplication.run(VotingApplication.class, args);
