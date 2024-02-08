@@ -18,9 +18,9 @@ public class VoterController {
     @Autowired
     private VoterService voterService;
 
-    @PostMapping("/register")
+    @PostMapping("/save")
     public Voter createVoter (@RequestBody UserRegisterationRequest userRegisterationRequest) {
-        return voterService.createVoter(userRegisterationRequest);
+        return voterService.saveVoter(userRegisterationRequest);
     }
     @PostMapping("/authenticate")
     public boolean authenticateVoter(@RequestParam String username, @RequestParam String password) {

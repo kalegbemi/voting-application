@@ -20,13 +20,13 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @PostMapping("/admins")
-    @PreAuthorize("/Admin")
+    @PostMapping("/register")
     public Admin saveAdmin(@RequestBody AdminRegistrationRequest adminRegistrationRequest) {
         return adminService.saveAdmin(adminRegistrationRequest);
     }
 
     @GetMapping("/admins")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Admin> getAllAdmins() {
         return adminService.getAllAdmins();
     }
@@ -37,7 +37,8 @@ public class AdminController {
 }
 
     @PostMapping("/login")
-    public AuthenticationResponse adminLogin(@RequestBody AuthenticationRequest authenticationRequest) {
+    @PreAuthorize("hasRole('ADMIN')")
+    public AuthenticationResponse adminLogin(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
         return adminService.adminLogin((authenticationRequest));
     }
 

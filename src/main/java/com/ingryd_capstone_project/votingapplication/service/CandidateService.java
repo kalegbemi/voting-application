@@ -19,16 +19,18 @@ public class CandidateService {
 
    private final CandidateRepository candidateRepository;
 
-   public long getid() {
+   public Candidate getCandidateById(long id) {
 
-      return candidateRepository.getId();
+      return candidateRepository.findById(id).orElseThrow();
    }
    @CacheEvict(value = "allCandidate", allEntries = true)
    public Candidate saveCandidate(Candidate candidate) {
-      System.out.println(getid());
-      System.out.println(getid() + 1);
-      candidate.setId(getid() + 1);
-      return candidateRepository.save(candidate);
+      Candidate candidate1 = new Candidate();
+      candidate1.setFirstName(candidate.getFirstName());
+      candidate1.setLastName(candidate.getLastName());
+      candidate1.setPartyAffiliation(candidate.getPartyAffiliation());
+      candidate1.setPosition(candidate.getPosition());
+      return candidateRepository.save(candidate1);
    }
 
    public Map<String, Boolean> saveAllUsers(List<Candidate> users){
@@ -42,10 +44,10 @@ public class CandidateService {
       return candidateRepository.findAll();
    }
 
-   public Candidate getCandidateById(long id) {
-
-      return candidateRepository.findById(id).orElse(null);
-   }
+//   public Candidate getCandidateById(long id) {
+//
+//      return candidateRepository.findById(id).orElse(null);
+//   }
 
    public String updateCandidate(long id, CandidateUpdateRequest updateRequest) {
       Optional<Candidate> optionalCandidate = candidateRepository.findById(id);

@@ -20,21 +20,16 @@ public class VoterService {
     private final VoterRepository voterRepository;
 
     @CacheEvict(value = "allVoter", allEntries = true)
-    public Voter saveVoter(Voter voter) {
-        voter.setFirstName(voter.getFirstName());
+    public Voter saveVoter(UserRegisterationRequest request) {
+        Voter voter = new Voter();
+        voter.setFirstName(request.getFirstName());
         voter.setLastName(voter.getLastName());
         voter.setUsername(voter.getUsername());
         voter.setPassword(voter.setPassword());
         return voterRepository.save(voter);
     }
 
-    public Map<String, Boolean> saveAllUsers(List<Voter> users){
-        Map<String, Boolean> response = new HashMap<>();
-        for(Voter user : users){
-            response.put(user.getFullName()+"Voter added successfully", true);
-        }
-        return response;
-    }
+
     @Cacheable
     public List<Voter> getAllVoters() {
         return voterRepository.findAll();
