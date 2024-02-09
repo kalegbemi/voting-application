@@ -2,12 +2,10 @@ package com.ingryd_capstone_project.votingapplication.model;
 
 import com.ingryd_capstone_project.votingapplication.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -30,12 +28,17 @@ public class Voter {
 
     private String password;
 
-    boolean registered;
-
+    //boolean registered;
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    public String setPassword() {
-        return setPassword();
+    public Voter(Vote vote, String firstName, String lastName, String username, String password, Role role) {
+        this.vote = vote;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.fullName = firstName + " "+ lastName;
+        this.role = Role.VOTER;
     }
 }
