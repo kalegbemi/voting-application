@@ -14,5 +14,4 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     List<Candidate> findCandidateByPosition(String position);
     List<Candidate> findCandidateByPartyAffiliation(String partyAffiliation);
 
-    long getId();
 }

@@ -7,9 +7,7 @@ import lombok.Data;
 public class AdminRegistrationRequest {
     private String username;
     private String password;
-    private String FullName;
-    private String email;
     public Role role;
-
-
+    public String fullName;
+    public String email;
 }
