@@ -3,7 +3,7 @@ package com.ingryd_capstone_project.votingapplication.service;
 
 import com.ingryd_capstone_project.votingapplication.model.Voter;
 import com.ingryd_capstone_project.votingapplication.repository.VoterRepository;
-import com.ingryd_capstone_project.votingapplication.request.UserRegisterationRequest;
+import com.ingryd_capstone_project.votingapplication.request.UserRegistrationRequest;
 import com.ingryd_capstone_project.votingapplication.request.VoterUpdateRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
@@ -21,21 +21,22 @@ public class VoterService {
     private final VoterRepository voterRepository;
 
     @CacheEvict(value = "allVoter", allEntries = true)
-    public Voter saveVoter(Voter voter) {
-        voter.setFirstName(voter.getFirstName());
-        voter.setLastName(voter.getLastName());
-        voter.setUsername(voter.getUsername());
-        voter.setPassword(voter.setPassword());
+    public Voter saveVoter(UserRegistrationRequest request) {
+        Voter voter = new Voter();
+        voter.setFirstName(request.getFirstName());
+        voter.setLastName(request.getLastName());
+        voter.setUsername(request.getUsername());
+        voter.setPassword(request.getPassword());
         return voterRepository.save(voter);
     }
 
-    public Map<String, Boolean> saveAllUsers(List<Voter> users){
+    /*public Map<String, Boolean> saveAllUsers(List<Voter> users){
         Map<String, Boolean> response = new HashMap<>();
         for(Voter user : users){
             response.put(user.getFullName()+"Voter added successfully", true);
         }
         return response;
-    }
+    }*/
     @Cacheable
     public List<Voter> getAllVoters() {
         return voterRepository.findAll();
