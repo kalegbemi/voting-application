@@ -1,7 +1,7 @@
 package com.ingryd_capstone_project.votingapplication.controller;
 
 import com.ingryd_capstone_project.votingapplication.model.Voter;
-import com.ingryd_capstone_project.votingapplication.request.UserRegisterationRequest;
+import com.ingryd_capstone_project.votingapplication.request.UserRegistrationRequest;
 import com.ingryd_capstone_project.votingapplication.request.VoterUpdateRequest;
 import com.ingryd_capstone_project.votingapplication.service.VoterService;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +19,8 @@ public class VoterController {
     private VoterService voterService;
 
     @PostMapping("/register")
-    public Voter createVoter (@RequestBody UserRegisterationRequest userRegisterationRequest) {
-        return voterService.createVoter(userRegisterationRequest);
+    public Voter createVoter (@RequestBody UserRegistrationRequest userRegisterationRequest) {
+        return voterService.saveVoter (userRegisterationRequest);
     }
     @PostMapping("/authenticate")
     public boolean authenticateVoter(@RequestParam String username, @RequestParam String password) {
