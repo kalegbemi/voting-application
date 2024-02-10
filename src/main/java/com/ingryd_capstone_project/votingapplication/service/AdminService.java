@@ -1,5 +1,6 @@
 package com.ingryd_capstone_project.votingapplication.service;
 
+import com.ingryd_capstone_project.votingapplication.enums.Role;
 import com.ingryd_capstone_project.votingapplication.exception.AdminNotFoundException;
 import com.ingryd_capstone_project.votingapplication.model.Admin;
 import com.ingryd_capstone_project.votingapplication.model.AuthenticationRequest;
@@ -38,7 +39,7 @@ public class AdminService {
            admin.setEmail(adminRegistrationRequest.getEmail());
            admin.setFullName(adminRegistrationRequest.getFullName());
            admin.setPassword(passwordEncoder.encode(adminRegistrationRequest.getPassword()));
-           admin.setRole(adminRegistrationRequest.getRole());
+           admin.setRole(Role.ADMIN);
            return adminRepository.save(admin);
        }catch (Exception e){
            System.out.println("Something went wrong" + e.getMessage());
