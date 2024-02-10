@@ -1,5 +1,6 @@
 package com.ingryd_capstone_project.votingapplication.service;
 
+import com.ingryd_capstone_project.votingapplication.enums.Role;
 import com.ingryd_capstone_project.votingapplication.model.Voter;
 import com.ingryd_capstone_project.votingapplication.repository.VoterRepository;
 import com.ingryd_capstone_project.votingapplication.request.UserRegisterationRequest;
@@ -25,7 +26,8 @@ public class VoterService {
         voter.setFirstName(request.getFirstName());
         voter.setLastName(voter.getLastName());
         voter.setUsername(voter.getUsername());
-        voter.setPassword(voter.setPassword());
+        voter.setPassword(voter.getPassword());
+        voter.setRole(Role.VOTER);
         return voterRepository.save(voter);
     }
 

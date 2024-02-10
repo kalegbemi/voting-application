@@ -26,10 +26,10 @@ public class VotingApplication {
 		SpringApplication.run(VotingApplication.class, args);
 
 	}
-	@Bean
-	public JavaMailSender javaMailSender() {
-		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-//
+//	@Bean
+//	public JavaMailSender javaMailSender() {
+//		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+////
 //		mailSender.setHost("smtp.gmail.com");
 //		mailSender.setPort(465); // Or the appropriate port for your mail server
 //		mailSender.setUsername("physayoemma@gmail.com");
@@ -37,8 +37,8 @@ public class VotingApplication {
 //		//mailSender.setProtocol("");
 //		// More configurations as needed
 
-		return mailSender;
-	}
+//		return mailSender;
+//	}
 
 
 }
