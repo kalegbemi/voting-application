@@ -2,10 +2,7 @@ package com.ingryd_capstone_project.votingapplication.model;
 
 import com.ingryd_capstone_project.votingapplication.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,8 +12,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
+@Data
 @Entity
 @Table(name = "voter_table")
 public class Voter implements UserDetails {
@@ -24,7 +20,7 @@ public class Voter implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(cascade =CascadeType.ALL)
+    @OneToOne(cascade =CascadeType.ALL)
     private Vote vote;
 
     private String firstName;
@@ -34,13 +30,11 @@ public class Voter implements UserDetails {
     private String username;
 
     private String password;
+    private  boolean registered = true;
 
     @Enumerated(value = EnumType.STRING)
     private Role role = Role.VOTER;
 
-    public String setPassword() {
-        return setPassword();
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -49,7 +43,7 @@ public class Voter implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
@@ -75,4 +69,5 @@ public class Voter implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

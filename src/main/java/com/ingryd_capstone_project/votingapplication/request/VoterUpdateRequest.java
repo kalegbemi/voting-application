@@ -12,5 +12,6 @@ public class VoterUpdateRequest {
     private String password;
     private String firstName;
     private String lastName;
+    private boolean registered;
     private Role role;
 }
