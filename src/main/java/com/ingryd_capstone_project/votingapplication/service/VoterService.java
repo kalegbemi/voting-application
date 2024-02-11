@@ -19,6 +19,7 @@ import java.util.Optional;
 public class VoterService {
 
     private final VoterRepository voterRepository;
+    private final EmailService emailService;
 
     @CacheEvict(value = "allVoter", allEntries = true)
     public Voter saveVoter(UserRegisterationRequest request) {
@@ -27,13 +28,17 @@ public class VoterService {
         voter.setLastName(request.getLastName());
         voter.setUsername(request.getUsername());
         voter.setPassword(request.getPassword());
+        voter.setEmail(request.getEmail());
         voter.setRegistered(request.getRegistered());
         voter.setRole(Role.VOTER);
-        return voterRepository.save(voter);
+        voterRepository.save(voter);
+        String name = voter.getFirstName() + " " + voter.getLastName();
+        emailService.sendVoterMessage(voter.getEmail(),name, voter.getRole().name());
+        emailService.sendMessage(voter.getEmail(),name, voter.getRole().name());
+        return voter;
     }
 
-
-    @Cacheable
+    @Cacheable(value = "allvoters")
     public List<Voter> getAllVoters() {
         return voterRepository.findAll();
     }
@@ -60,6 +65,7 @@ public class VoterService {
             toUpdate.setUsername(updateRequest.getUsername());
             toUpdate.setPassword(updateRequest.getPassword());
             toUpdate.setFirstName(updateRequest.getFirstName());
+            toUpdate.setEmail(updateRequest.getEmail());
             toUpdate.setLastName(updateRequest.getLastName());
 
             voterRepository.save(toUpdate);

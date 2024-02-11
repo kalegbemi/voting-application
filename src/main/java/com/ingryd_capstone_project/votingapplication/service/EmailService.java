@@ -8,6 +8,7 @@ import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -20,11 +21,25 @@ import org.springframework.stereotype.Service;
 public class EmailService implements EmailServiceImpl {
 
     public static final String UTF_8_ENCODING = "UTF-8";
-    public static  final  String FROM = "physayoemma@gmail.com";
+    public static  final  String FROM = "kunzykk205@gmail.com";
     public static final String SUBJECT = "NOTIFICATION OF REGISTRATION";
 
     private final JavaMailSender javaMailSender;
   //  private final MailProperties mailProperties;
+
+    public void sendMessage(String to, String name, String role) {
+        log.info("Sending Email Using Simple Mail Sender to {}", name);
+        try{
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setSubject(SUBJECT);
+            message.setTo(to);
+            message.setFrom(FROM);
+            message.setText(MessageUtil.getVoterMessage(to, name, role));
+            javaMailSender.send(message);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     @Override
