@@ -24,9 +24,10 @@ public class VoterService {
     public Voter saveVoter(UserRegisterationRequest request) {
         Voter voter = new Voter();
         voter.setFirstName(request.getFirstName());
-        voter.setLastName(voter.getLastName());
-        voter.setUsername(voter.getUsername());
-        voter.setPassword(voter.getPassword());
+        voter.setLastName(request.getLastName());
+        voter.setUsername(request.getUsername());
+        voter.setPassword(request.getPassword());
+        voter.setRegistered(request.getRegistered());
         voter.setRole(Role.VOTER);
         return voterRepository.save(voter);
     }

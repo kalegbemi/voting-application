@@ -39,6 +39,7 @@ public class Admin implements UserDetails {
     @Enumerated(value = EnumType.STRING)
     private Role role = Role.ADMIN;
 
+
     public Admin(String username, String password, String fullName, String email) {
         this.username = username;
         this.password = password;
