@@ -11,6 +11,7 @@ public class UserRegisterationRequest {
     private String lastName;
     private String username;
     private String password;
+    private String email;
     private Boolean registered;
     private Role role;
 
