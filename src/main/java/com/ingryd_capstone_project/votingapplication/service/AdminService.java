@@ -1,5 +1,6 @@
 package com.ingryd_capstone_project.votingapplication.service;
 
+import com.ingryd_capstone_project.votingapplication.enums.Role;
 import com.ingryd_capstone_project.votingapplication.exception.AdminNotFoundException;
 import com.ingryd_capstone_project.votingapplication.model.Admin;
 import com.ingryd_capstone_project.votingapplication.model.AuthenticationRequest;
@@ -38,7 +39,7 @@ public class AdminService {
            admin.setEmail(adminRegistrationRequest.getEmail());
            admin.setFullName(adminRegistrationRequest.getFullName());
            admin.setPassword(passwordEncoder.encode(adminRegistrationRequest.getPassword()));
-           admin.setRole(adminRegistrationRequest.getRole());
+           admin.setRole(Role.ADMIN);
            return adminRepository.save(admin);
        }catch (Exception e){
            System.out.println("Something went wrong" + e.getMessage());
@@ -69,12 +70,26 @@ public Admin getAdminById(int id) {
         return adminRepository.findById(id).orElseThrow(()->new AdminNotFoundException("Admin with id: " + id + "can not be found"));
 }
 public Admin updateAdmin(int id, AdminUpdateRequest updateRequest) {
+
     Admin toUpdate = getAdminById(id);
     toUpdate.setUsername(updateRequest.getUsername());
     toUpdate.setPassword(updateRequest.getPassword());
     toUpdate.setRole(updateRequest.getRole());
+    toUpdate.setFullName(updateRequest.getFullName());
+    toUpdate.setEmail(updateRequest.getEmail());
     return adminRepository.save(toUpdate);
 }
+public Admin updatePassword(int id, String newPassword) {
+    if (newPassword != null && !newPassword.isEmpty()) {
+        String hashedPassword = passwordEncoder.encode(newPassword);
+        Admin admin = getAdminById(id);
+        admin.setPassword(hashedPassword);
+        return adminRepository.save(admin);
+    } else {
+        throw new IllegalArgumentException("New password cannot be null or empty.");
+    }
+}
+
 @CacheEvict(value = {"allAdmins"})
 public void deleteAdmin(int id) {
         adminRepository.deleteById(id);
