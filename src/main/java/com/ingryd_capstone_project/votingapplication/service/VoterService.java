@@ -3,7 +3,6 @@ package com.ingryd_capstone_project.votingapplication.service;
 import com.ingryd_capstone_project.votingapplication.enums.Role;
 import com.ingryd_capstone_project.votingapplication.model.Voter;
 import com.ingryd_capstone_project.votingapplication.repository.VoterRepository;
-import com.ingryd_capstone_project.votingapplication.request.UserRegisterationRequest;
 import com.ingryd_capstone_project.votingapplication.request.VoterUpdateRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
@@ -38,16 +37,25 @@ public class VoterService {
         return voter;
     }
 
+
+    public Map<String, Boolean> saveAllUsers(List<Voter> users){
+        Map<String, Boolean> response = new HashMap<>();
+        for(Voter user : users){
+            response.put(user.getFullName()+"Voter added successfully", true);
+        }
+        return response;
+    }
+   
     @Cacheable(value = "allvoters")
     public List<Voter> getAllVoters() {
         return voterRepository.findAll();
     }
-    @Cacheable
+    @Cacheable(value = "single voter", key = "id")
     public Optional<Voter> getVoterById(long voterId) {
 
         return voterRepository.findById(voterId);
     }
-    @CacheEvict
+    @CacheEvict(value = "single voter", allEntries = true)
     public void deleteVoter(long voterId) {
         voterRepository.deleteById(voterId);
     }
@@ -55,7 +63,7 @@ public class VoterService {
         Voter voter = voterRepository.findByUsername(username);
         return voter != null && voter.getPassword().equals(password);
     }
-    @CacheEvict
+    @CacheEvict(value = "single voter", allEntries = true)
     public String updateVoter(long id, VoterUpdateRequest updateRequest) {
         Optional<Voter> optionalVoter = voterRepository.findById(id);
 

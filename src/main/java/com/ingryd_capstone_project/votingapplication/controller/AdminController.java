@@ -54,8 +54,7 @@ public class AdminController {
 
     @DeleteMapping("/admins/{id}")
     public void deleteAdmin(@PathVariable int id) {
+
         adminService.deleteAdmin(id);
     }
-
-
 }
