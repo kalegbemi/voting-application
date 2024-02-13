@@ -21,8 +21,7 @@ public class Voter implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade =CascadeType.ALL)
-    private Vote vote;
+
 
     private String firstName;
 
