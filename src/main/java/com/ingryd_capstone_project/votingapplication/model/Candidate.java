@@ -30,4 +30,8 @@ public class Candidate {
     private String partyAffiliation;
 
     private String position;
+
+    public Candidate orElse(Object o) {
+        return null;
+    }
 }
