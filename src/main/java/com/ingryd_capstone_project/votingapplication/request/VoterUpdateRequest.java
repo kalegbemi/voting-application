@@ -1,5 +1,6 @@
 package com.ingryd_capstone_project.votingapplication.request;
 
+import com.ingryd_capstone_project.votingapplication.enums.Role;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -11,4 +12,7 @@ public class VoterUpdateRequest {
     private String password;
     private String firstName;
     private String lastName;
+    private String email;
+    private boolean registered;
+    private Role role;
 }

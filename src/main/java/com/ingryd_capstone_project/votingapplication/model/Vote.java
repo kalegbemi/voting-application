@@ -65,12 +65,15 @@ public class Vote {
     private Long id;
 
     @ManyToOne(cascade =CascadeType.ALL)
+    @JoinColumn(name = "voter_id")
     private Voter voter;
 
     @ManyToOne
+    @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 
     @ManyToOne
+    @JoinColumn(name ="election_id")
     private Election election;
 
     private LocalDateTime votingTime;

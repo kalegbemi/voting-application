@@ -15,7 +15,6 @@ import java.util.Collection;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 @Entity
 @Table(name = "admin_table")
@@ -38,7 +37,16 @@ public class Admin implements UserDetails {
     private String email;
 
     @Enumerated(value = EnumType.STRING)
-    private Role role;
+    private Role role = Role.ADMIN;
+
+
+    public Admin(String username, String password, String fullName, String email) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.email = email;
+
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -46,11 +54,11 @@ public class Admin implements UserDetails {
     }
     @Override
     public String getPassword() {
-        return this.getPassword();
+        return this.password;
     }
     @Override
     public String getUsername() {
-        return this.getUsername();
+        return this.username;
     }
 
     @Override

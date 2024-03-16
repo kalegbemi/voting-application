@@ -20,7 +20,6 @@ public class CandidateService {
 
    private final CandidateRepository candidateRepository;
 
-
    @CacheEvict(value = "allCandidate", allEntries = true)
    public Candidate saveCandidate(CandidateRegisterationRequest candidate) {
       candidate.setFirstName(candidate.getFirstName());
@@ -28,6 +27,7 @@ public class CandidateService {
       candidate.setPosition(candidate.getPosition());
       candidate.setPartyAffiliation(candidate.getPartyAffiliation());
       return candidateRepository.save(candidate);
+  
    }
    public Map<String, Boolean> saveAllUsers(List<Candidate> users){
       Map<String, Boolean> response = new HashMap<>();
@@ -40,11 +40,13 @@ public class CandidateService {
    public List<Candidate> getAllCandidates() {
       return candidateRepository.findAll();
    }
+  
    @Cacheable(value = "single candidate", key = "id")
    public Candidate getCandidateById(long id) {
       return candidateRepository.findById(id).orElse(null);
    }
    @CacheEvict(value = "simgle candidate", allEntries = true)
+
    public String updateCandidate(long id, CandidateUpdateRequest updateRequest) {
       Optional<Candidate> optionalCandidate = candidateRepository.findById(id);
 

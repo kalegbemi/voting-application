@@ -19,13 +19,15 @@ public class ElectionResult {
     private Long id;
 
     @OneToOne
-    @JoinColumn(referencedColumnName = "election_id")
+    @JoinColumn(name = "election_id")
     private Election election;
 
     @ManyToOne
+    @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 
     @OneToMany
+    @JoinColumn(name = "vote_id")
     private List<Vote> vote;
 
     private static Long totalResult;

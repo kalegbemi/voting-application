@@ -17,12 +17,6 @@ public class Candidate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade =CascadeType.ALL)
-    private Voter voter;
-
-    @ManyToOne(cascade =CascadeType.ALL)
-    private Vote vote;
-
     private String firstName;
 
     private String lastName;

@@ -1,3 +1,4 @@
+
 package com.ingryd_capstone_project.votingapplication.dto;
 
 import com.ingryd_capstone_project.votingapplication.model.Election;
