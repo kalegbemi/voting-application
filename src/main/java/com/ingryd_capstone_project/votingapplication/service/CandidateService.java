@@ -1,11 +1,12 @@
 package com.ingryd_capstone_project.votingapplication.service;
 
 import com.ingryd_capstone_project.votingapplication.model.Candidate;
-import com.ingryd_capstone_project.votingapplication.model.Voter;
 import com.ingryd_capstone_project.votingapplication.repository.CandidateRepository;
+import com.ingryd_capstone_project.votingapplication.request.CandidateRegisterationRequest;
 import com.ingryd_capstone_project.votingapplication.request.CandidateUpdateRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -19,20 +20,15 @@ public class CandidateService {
 
    private final CandidateRepository candidateRepository;
 
-   public Candidate getCandidateById(long id) {
-
-      return candidateRepository.findById(id).orElseThrow();
-   }
    @CacheEvict(value = "allCandidate", allEntries = true)
-   public Candidate saveCandidate(Candidate candidate) {
-      Candidate candidate1 = new Candidate();
-      candidate1.setFirstName(candidate.getFirstName());
-      candidate1.setLastName(candidate.getLastName());
-      candidate1.setPartyAffiliation(candidate.getPartyAffiliation());
-      candidate1.setPosition(candidate.getPosition());
-      return candidateRepository.save(candidate1);
+   public Candidate saveCandidate(CandidateRegisterationRequest candidate) {
+      candidate.setFirstName(candidate.getFirstName());
+      candidate.setLastName(candidate.getLastName());
+      candidate.setPosition(candidate.getPosition());
+      candidate.setPartyAffiliation(candidate.getPartyAffiliation());
+      return candidateRepository.save(candidate);
+  
    }
-
    public Map<String, Boolean> saveAllUsers(List<Candidate> users){
       Map<String, Boolean> response = new HashMap<>();
       for(Candidate user : users){
@@ -40,14 +36,16 @@ public class CandidateService {
       }
       return response;
    }
+   @Cacheable("all candidates")
    public List<Candidate> getAllCandidates() {
       return candidateRepository.findAll();
    }
-
-//   public Candidate getCandidateById(long id) {
-//
-//      return candidateRepository.findById(id).orElse(null);
-//   }
+  
+   @Cacheable(value = "single candidate", key = "id")
+   public Candidate getCandidateById(long id) {
+      return candidateRepository.findById(id).orElse(null);
+   }
+   @CacheEvict(value = "simgle candidate", allEntries = true)
 
    public String updateCandidate(long id, CandidateUpdateRequest updateRequest) {
       Optional<Candidate> optionalCandidate = candidateRepository.findById(id);
@@ -68,7 +66,13 @@ public class CandidateService {
          return "User not found with ID: " + id;
       }
    }
+   @CacheEvict(value = "single candidate", allEntries = true)
    public void deleteById(long CandidateId) {
+
       candidateRepository.deleteById(CandidateId);
+   }
+
+   public boolean authenticateCandidate(String username, String password) {
+      return false;
    }
 }
